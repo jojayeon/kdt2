@@ -2,13 +2,15 @@ const obj = require('./data.json');
 const fs = require("fs");
 const path = require("path");
 module.exports = obj;
-console.log(obj);
+
 const obj1 = obj.title; 
-console.log(obj1);
 const obj2 = obj.date; 
-console.log(obj2);
 const obj3 = obj.content; 
-console.log(obj3);
+
+indedxobj1 = obj2.split("-")[1];
+indedxobj2 = obj2.split("-")[2];
+indedxobj = indedxobj1 + indedxobj2;
+
 const DATA = `
 <!DOCTYPE html>
 <html lang="en">
@@ -23,17 +25,17 @@ const DATA = `
       <h1>${obj1}</h1>
       <p>${obj2}</p>
       <p>${obj3}</p>
-    </div>
-  </body>
-</html>
-        `
-//조건
-fs.writeFile(path.join(__dirname, "index.html"),DATA, (err)=>{
-    if(err){
-    console.log(err);
-  }
+      </div>
+      </body>
+      </html>
+      `
+      //조건.실행이 안됨 
+      fs.writeFile(path.join(__dirname, `index${indedxobj}.html`),DATA, (err)=>{
+        if(err){
+          console.log(err);
+        }   
+      });
 
 
   // fs.appendFile 버튼 만들기 추가
   // - 기존에 있느 거에서 추가 
-});
