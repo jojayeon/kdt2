@@ -86,7 +86,31 @@ const server = http.createServer((req,res)=>{
           if(err){
             console.log(err);
           }
-        }); 
+        });
+        //html안에 link에 주석이랑 wnth qkRnrkl
+        const DATA = `
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    //<link rel="stylesheet" href="SUB.css">
+  </head>
+  <body>
+    <div id="root">
+      <h1>${title}</h1>
+      <p>${date}</p>
+      <p>${content}</p>
+    </div>
+  </body>
+  </html>
+        `
+        fs.writeFile(path.join(__dirname, `public/index${date}.html`),DATA, (err)=>{ //indexobj지우기
+          if(err){
+            console.log(err);
+          }   
+        });
       })
       fs.readFile(path.join(__dirname, "main.html"), (err, data)=>{
         if(err){
