@@ -50,38 +50,10 @@ const server = http.createServer((req,res)=>{
     });
   }
 
-  //서브 css 미리만들어둠 - 파일 위치만 확인
-  // if(req.url === "/sub.css"){
-  //   fs.readFile(path.join(__dirname, "sub.css"), (err, data)=>{
-  //     if(err){
-  //       console.log("err~!~!~!~");
-  //     }
-  //     res.writeHead(200,{"content-type": "text/css; charset = utf-8"});
-  //     res.end(data);
-  //   });
-  // }  
-
 
   }else if(req.method === "POST"){
     if(req.url === "/submit"){
       //입력한 일기를 저장하는 파일을 보내도 메인 화면이 남아있게 추가
-      fs.readFile(path.join(__dirname, "main.html"), (err, data)=>{
-        if(err){
-          console.log("err~!~!~!~");
-        }
-        res.writeHead(200,{"content-type": "text/html; charset = utf-8"});
-        res.end(data);
-      });
-      //todo
-    if(req.url === "/submit"){
-        fs.readFile(path.join(__dirname, "main.css"), (err, data)=>{
-          if(err){
-            console.log("err~!~!~!~");
-          }
-          res.writeHead(200,{"content-type": "text/css; charset = utf-8"});
-          res.end(data);
-        });
-      }
       let body = "";
       req.on("data", (check)=>{
         body += check.toString();
@@ -97,16 +69,21 @@ const server = http.createServer((req,res)=>{
           date: date,
           content: content,
         };
-
+        
         const jsonDataString = JSON.stringify(jsonData, null, 2);
         fs.writeFile(path.join(__dirname, "public/data.json"),jsonDataString, (err)=>{
           if(err){
             console.log(err);
           }
-          res.writeHead(200,{"context-type": "application/json; charset = utf-8"});
-          res.end();
         }); 
       })
+      fs.readFile(path.join(__dirname, "main.html"), (err, data)=>{
+        if(err){
+          console.log("err~!~!~!~");
+        }
+        res.writeHead(200,{"content-type": "text/html; charset = utf-8"});
+        res.end(data);
+      });
     }
   }
 });
