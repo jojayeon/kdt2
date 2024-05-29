@@ -119,6 +119,13 @@ const server = http.createServer((req,res)=>{
         res.writeHead(200,{"content-type": "text/html; charset = utf-8"});
         res.end(data);
       });
+      fs.readFile(path.join(__dirname, `public/index${date}.html`), (err, data)=>{
+        if(err){
+          console.log("err~!~!~!~");
+        }
+        res.writeHead(200,{"content-type": "text/html; charset = utf-8"});
+        res.end(data);
+      });
     }
   }
 });
