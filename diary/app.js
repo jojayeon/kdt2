@@ -50,6 +50,17 @@ const server = http.createServer((req,res)=>{
     });
   }
 
+//서브 css 미리만들어둠 - 파일 위치만 확인
+  // if(req.url === "/sub.css"){
+  //   fs.readFile(path.join(__dirname, "sub.css"), (err, data)=>{
+  //     if(err){
+  //       console.log("err~!~!~!~");
+  //     }
+  //     res.writeHead(200,{"content-type": "text/css; charset = utf-8"});
+  //     res.end(data);
+  //   });
+  // }  
+
 
   }else if(req.method === "POST"){
     if(req.url === "/submit"){
