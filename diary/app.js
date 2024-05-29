@@ -88,30 +88,7 @@ const server = http.createServer((req,res)=>{
           }
         });
         const DATA = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="main.css">
-</head>
-<body>
-  <div id="root">
-    <h1>일기장</h1>
-    <form action="/submit" method="POST">
-      <label for="title">제목</label><br>
-      <input type="text" id="title" name = "title" placeholder="제목"><br>
-      <label for="date">날짜</label><br>
-      <input type="date" id="date" name = "date" placeholder="날짜"><br>
-      <label for="content">글</label><br>
-      <textarea name="content" id="content" cols="30" rows="10"></textarea><br>
-      <button type="submit">전송</button>
       <a href="index.html">링크가기</a>
-    </form>
-  </div>
-</body>
-</html>
         `
         fs.writeFile(path.join(__dirname, "main.html"),DATA, (err)=>{
             if(err){
