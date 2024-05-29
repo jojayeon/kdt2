@@ -1,0 +1,10 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+/* 테스트 */
+#root{ 
+  background-color: aqua;
+  border: 1px solid black;
+}
