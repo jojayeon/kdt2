@@ -81,7 +81,7 @@ const server = http.createServer((req,res)=>{
         };
         
         const jsonDataString = JSON.stringify(jsonData, null, 2);
-        fs.writeFile(path.join(__dirname, `public/data${number}.json`),jsonDataString, (err)=>{
+        fs.writeFile(path.join(__dirname, `json/data${number}.json`),jsonDataString, (err)=>{
           if(err){
             console.log(err);
           }
