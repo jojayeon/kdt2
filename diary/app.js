@@ -85,12 +85,12 @@ const server = http.createServer((req,res)=>{
         };
         
         const jsonDataString = JSON.stringify(jsonData, null, 2);
-        fs.writeFile(path.join(__dirname, "public/data.json"),jsonDataString, (err)=>{
+        fs.writeFile(path.join(__dirname, `public/data${number}.json`),jsonDataString, (err)=>{
           if(err){
             console.log(err);
           }
         });
-        //html안에 link에 주석이랑 wnth qkRnrkl
+        //html안에 link에 주석이랑 주소 바꾸기
         const DATA = `
 <!DOCTYPE html>
 <html lang="en">
@@ -101,14 +101,23 @@ const server = http.createServer((req,res)=>{
   </head>
   <body>
     <div id="root">
-      <h1>${title}</h1>
-      <p>${date}</p>
-      <p>${content}</p>
+      <div>
+        <h1>${title}</h1>
+        <p>${date}</p>
+      </div>
+      <div>
+        <p>${content}</p>
+      </div>
+      <div>
+        <a href=/html/index${number-1}.html>이전페이지</a>
+        <a href="/main.html">홈</a>
+        <a href=/html/index${number+1}.html>다음페이지</a>
+      </div>
     </div>
   </body>
-  </html>
+</html>
         `
-        fs.writeFile(path.join(__dirname, `html/index${number+1}.html`),DATA, (err)=>{ //indexobj지우기
+        fs.writeFile(path.join(__dirname, `html/index${number}.html`),DATA, (err)=>{ //indexobj지우기
           if(err){
             console.log(err);
           }
