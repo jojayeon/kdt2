@@ -108,12 +108,11 @@ const server = http.createServer((req,res)=>{
   </body>
   </html>
         `
-        fs.writeFile(path.join(__dirname, `html/index${number}.html`),DATA, (err)=>{ //indexobj지우기
+        fs.writeFile(path.join(__dirname, `html/index${number+1}.html`),DATA, (err)=>{ //indexobj지우기
           if(err){
             console.log(err);
           }
-        });
-        
+        }); 
       })
       fs.readFile(path.join(__dirname, "main.html"), (err, data)=>{
         if(err){
@@ -122,19 +121,9 @@ const server = http.createServer((req,res)=>{
         res.writeHead(200,{"content-type": "text/html; charset = utf-8"});
         res.end(data);
       });
-      //생각해보기
-      fs.readFile(path.join(__dirname, `public/index${number-1}.html`), (err, data)=>{
-        if(err){
-          console.log("err~!~!~!~");
-        }
-        res.writeHead(200,{"content-type": "text/html; charset = utf-8"});
-        res.end(data);
-      });
       
     }
-    console.log(number);
     number++;
-    console.log(number);
   }
 });
 //로컬 서버 오픈
