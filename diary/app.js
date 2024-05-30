@@ -29,8 +29,8 @@ const server = http.createServer((req,res)=>{
     //파일 위치 확인 해서 넣어주기
   //지금 부터는 서브 페이지 만들어지는 것 계속 들어가게
   for(let i = 1; i < 366; i++) {
-    if(req.url === `/index${i}.html`){
-      fs.readFile(path.join(__dirname, `index${i}.html`), (err, data)=>{
+    if(req.url === `/html/index${i}.html`){
+      fs.readFile(path.join(__dirname, `html/index${i}.html`), (err, data)=>{
         if(err){
           console.log("err~!~!~!~");
         }
@@ -123,13 +123,14 @@ const server = http.createServer((req,res)=>{
         res.end(data);
       });
       //생각해보기
-      // fs.readFile(path.join(__dirname, `public/index${number}.html`), (err, data)=>{
-      //   if(err){
-      //     console.log("err~!~!~!~");
-      //   }
-      //   res.writeHead(200,{"content-type": "text/html; charset = utf-8"});
-      //   res.end(data);
-      // });
+      fs.readFile(path.join(__dirname, `public/index${number-1}.html`), (err, data)=>{
+        if(err){
+          console.log("err~!~!~!~");
+        }
+        res.writeHead(200,{"content-type": "text/html; charset = utf-8"});
+        res.end(data);
+      });
+      
     }
     console.log(number);
     number++;
