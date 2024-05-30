@@ -117,11 +117,7 @@ const server = http.createServer((req,res)=>{
   </body>
 </html>
         `
-<<<<<<< HEAD
-        fs.writeFile(path.join(__dirname, `html/index${date}.html`),DATA, (err)=>{ //indexobj지우기
-=======
         fs.writeFile(path.join(__dirname, `html/index${number}.html`),DATA, (err)=>{ //indexobj지우기
->>>>>>> IHT
           if(err){
             console.log(err);
           }
