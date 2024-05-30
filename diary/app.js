@@ -2,6 +2,9 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
+
+let number = 0;
+
 const server = http.createServer((req,res)=>{
   if(req.method === "GET"){
     //전부 메인 페이지 보이게 만드는 요소
@@ -25,17 +28,17 @@ const server = http.createServer((req,res)=>{
     }
     //파일 위치 확인 해서 넣어주기
   //지금 부터는 서브 페이지 만들어지는 것 계속 들어가게
-  // for(let i = 1; i < 366; i++) {
-  //   if(req.url === `/index${i}.html`){
-  //     fs.readFile(path.join(__dirname, `index${i}.html`), (err, data)=>{
-  //       if(err){
-  //         console.log("err~!~!~!~");
-  //       }
-  //       res.writeHead(200,{"content-type": "text/html; charset = utf-8"});
-  //       res.end(data);
-  //     });
-  //   }
-  // }
+  for(let i = 1; i < 366; i++) {
+    if(req.url === `/index${i}.html`){
+      fs.readFile(path.join(__dirname, `index${i}.html`), (err, data)=>{
+        if(err){
+          console.log("err~!~!~!~");
+        }
+        res.writeHead(200,{"content-type": "text/html; charset = utf-8"});
+        res.end(data);
+      });
+    }
+  }
 
 
   //css파일도 출력되게 만들기 - css는 2개 이니까 무식하게 만들자
@@ -95,7 +98,6 @@ const server = http.createServer((req,res)=>{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    //<link rel="stylesheet" href="SUB.css">
   </head>
   <body>
     <div id="root">
@@ -106,11 +108,12 @@ const server = http.createServer((req,res)=>{
   </body>
   </html>
         `
-        fs.writeFile(path.join(__dirname, `public/index${date}.html`),DATA, (err)=>{ //indexobj지우기
+        fs.writeFile(path.join(__dirname, `html/index${number}.html`),DATA, (err)=>{ //indexobj지우기
           if(err){
             console.log(err);
-          }   
+          }
         });
+        
       })
       fs.readFile(path.join(__dirname, "main.html"), (err, data)=>{
         if(err){
@@ -120,7 +123,7 @@ const server = http.createServer((req,res)=>{
         res.end(data);
       });
       //생각해보기
-      // fs.readFile(path.join(__dirname, `public/index${date}.html`), (err, data)=>{
+      // fs.readFile(path.join(__dirname, `public/index${number}.html`), (err, data)=>{
       //   if(err){
       //     console.log("err~!~!~!~");
       //   }
@@ -128,6 +131,9 @@ const server = http.createServer((req,res)=>{
       //   res.end(data);
       // });
     }
+    console.log(number);
+    number++;
+    console.log(number);
   }
 });
 //로컬 서버 오픈
