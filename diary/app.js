@@ -106,7 +106,7 @@ const server = http.createServer((req,res)=>{
   </body>
   </html>
         `
-        fs.writeFile(path.join(__dirname, `public/index${date}.html`),DATA, (err)=>{ //indexobj지우기
+        fs.writeFile(path.join(__dirname, `html/index${date}.html`),DATA, (err)=>{ //indexobj지우기
           if(err){
             console.log(err);
           }   
