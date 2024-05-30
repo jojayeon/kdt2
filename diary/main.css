@@ -5,6 +5,26 @@
 
 /* 테스트 */
 #root{ 
-  background-color: aqua;
+  background-color: rgb(234, 243, 181);
   border: 1px solid black;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  height:98vh;
+}
+#root > div{
+  display: flex;
+}
+#root > form{
+  display: flex;
+  flex-direction: column;
+}
+#title{
+  display: flex;
+}
+#date{
+  display: flex;
+}
+#content{
+  resize: none;
 }
