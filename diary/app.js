@@ -39,10 +39,7 @@ const server = http.createServer((req,res)=>{
       });
     }
   }
-
-
   //css파일도 출력되게 만들기 - css는 2개 이니까 무식하게 만들자
-
   if(req.url === "/main.css"){
     fs.readFile(path.join(__dirname, "main.css"), (err, data)=>{
       if(err){
@@ -52,17 +49,16 @@ const server = http.createServer((req,res)=>{
       res.end(data);
     });
   }
-
 //서브 css 미리만들어둠 - 파일 위치만 확인
-  // if(req.url === "/sub.css"){
-  //   fs.readFile(path.join(__dirname, "sub.css"), (err, data)=>{
-  //     if(err){
-  //       console.log("err~!~!~!~");
-  //     }
-  //     res.writeHead(200,{"content-type": "text/css; charset = utf-8"});
-  //     res.end(data);
-  //   });
-  // }  
+  if(req.url === "/public/sub.css"){
+    fs.readFile(path.join(__dirname, "public/sub.css"), (err, data)=>{
+      if(err){
+        console.log("err~!~!~!~");
+      }
+      res.writeHead(200,{"content-type": "text/css; charset = utf-8"});
+      res.end(data);
+    });
+  }  
 
 
   }else if(req.method === "POST"){
@@ -98,6 +94,7 @@ const server = http.createServer((req,res)=>{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../public/sub.css">
   </head>
   <body>
     <div id="root">
