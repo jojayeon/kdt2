@@ -147,12 +147,17 @@ server.listen(3000, (err) =>{
 console.log(__dirname)
 let dir = '/Users/Administrator/Desktop/kdt2/diary/html';
 let dir1 = path.join(__dirname, "html")
+let dir2 = path.join(__dirname, "public")
 console.log(dir);
 console.log(dir1);
-fs.readdir(dir, (err, file) => {
+console.log(dir2);
+
+let a = fs.readdir(dir2, (err, file) => {
   if(err){
     console.log(err);
   }
 	console.log(file);
   return file
 });
+
+console.log(a);
