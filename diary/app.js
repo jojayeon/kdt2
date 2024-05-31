@@ -3,7 +3,6 @@ const fs = require("fs");
 const path = require("path");
 
 
-let number = 0;
 
 
 // 이거 사용해서 폴더 에서 파일 제목들 가져와서 사용하기 length로 하면 충분히 가능해보임
@@ -92,13 +91,26 @@ const server = http.createServer((req,res)=>{
         };
         
         const jsonDataString = JSON.stringify(jsonData, null, 2);
-        fs.writeFile(path.join(__dirname, `json/data${number}.json`),jsonDataString, (err)=>{
+        let dir = path.join(__dirname, "html")
+        fs.readdir(dir, (err, file) => {
+          if(err){
+            console.log(err);
+          }
+          let dirfile = file.length + 1
+          let Atag = `<a href=/html/index${dirfile-1}.html>이전페이지</a>`
+        fs.writeFile(path.join(__dirname, `json/data${dirfile}.json`),jsonDataString, (err)=>{
           if(err){
             console.log(err);
           }
         });
         //html안에 link에 주석이랑 주소 바꾸기
-        const DATA = `
+          if(dirfile-1 === 0 ) {
+            Atag = `<a href="#">이전페이지</a>`
+          }
+          
+
+            const DATA =
+            `  
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -117,20 +129,15 @@ const server = http.createServer((req,res)=>{
         <p>${content}</p>
       </div>
       <div>
-        <a href=/html/index${number-1}.html>이전페이지</a>
+        ${Atag}
         <a href="/main.html">홈</a>
-        <a href=/html/index${number+1}.html>다음페이지</a>
+        <a href=/html/index${dirfile+1}.html>다음페이지</a>
       </div>
     </div>
   </body>
 </html>
         `
-        let dir = path.join(__dirname, "html")
-        fs.readdir(dir, (err, file) => {
-          if(err){
-            console.log(err);
-          }
-          let dirfile = file.length + 1
+          
           fs.writeFile(path.join(__dirname, `html/index${dirfile}.html`),DATA, (err)=>{ //indexobj지우기
             if(err){
               console.log(err);
@@ -147,7 +154,6 @@ const server = http.createServer((req,res)=>{
       });
       
     }
-    number++;
   }
 });
 //로컬 서버 오픈
