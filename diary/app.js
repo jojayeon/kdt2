@@ -5,6 +5,10 @@ const path = require("path");
 
 let number = 0;
 
+
+// 이거 사용해서 폴더 에서 파일 제목들 가져와서 사용하기 length로 하면 충분히 가능해보임
+
+
 const server = http.createServer((req,res)=>{
   if(req.method === "GET"){
     //전부 메인 페이지 보이게 만드는 요소
@@ -139,4 +143,16 @@ server.listen(3000, (err) =>{
     console(err);
   }
   console.log(`http://localhost:${PORT}`);
+});
+console.log(__dirname)
+let dir = '/Users/Administrator/Desktop/kdt2/diary/html';
+let dir1 = path.join(__dirname, "html")
+console.log(dir);
+console.log(dir1);
+fs.readdir(dir, (err, file) => {
+  if(err){
+    console.log(err);
+  }
+	console.log(file);
+  return file
 });
