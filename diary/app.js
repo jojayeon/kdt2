@@ -7,11 +7,6 @@ const path = require("path");
 
 // 이거 사용해서 폴더 에서 파일 제목들 가져와서 사용하기 length로 하면 충분히 가능해보임
 
-let number = 1
-
-for (let i = 0; i<dirfile; i++){
-  number += i; 
-}
 const server = http.createServer((req,res)=>{
   if(req.method === "GET"){
     //전부 메인 페이지 보이게 만드는 요소
@@ -111,11 +106,6 @@ const server = http.createServer((req,res)=>{
         //html안에 link에 주석이랑 주소 바꾸기
           if(dirfile-1 === 0 ) {
             Atag = `<a href="#">이전페이지</a>`
-          }
-          console.log(number);
-          
-          if(dirfile+1 === number){
-            Atag2 = `<a href="#">다음페이지</a>`
           }
 
             const DATA =
