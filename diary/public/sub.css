@@ -20,7 +20,11 @@
 
 /* 제목 *//* 날짜 */
 #root > div:nth-child(1){
-  flex-direction: row
+  flex-direction: row;
+}
+#root > div:nth-child(1)>p{
+  margin-left: 70px;
+
 }
 /* 내용 */
 #root > div:nth-child(2){
@@ -34,4 +38,5 @@
 }
 #root > div:nth-child(3)>a{
   display: flex;
+  margin: 10px;
 }

@@ -32,3 +32,6 @@
 #content{
   resize: none;
 }
+#root > form>a{
+  padding-top: 10px;
+}
