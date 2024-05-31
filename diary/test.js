@@ -14,12 +14,14 @@ console.log(dir2);
 
 //필요한 부분
 let dir = path.join(__dirname, "html")
-let dirfilele = fs.readdir(dir, (err, file) => {
+fs.readdir(dir, (err, file) => {
   if(err){
     console.log(err);
   }
-  return file.length + 1
+  
+  let dirfile = file.length + 1
+  console.log(dirfile);
+  console.log(file.length);
 });
-console.log(dirfilele);
 
 console.log(dir);
